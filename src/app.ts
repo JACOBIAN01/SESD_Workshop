@@ -1,6 +1,7 @@
 import express from "express";
 import mongoose from "mongoose";
 import useRouter from "./routes/todo.routes"
+import "dotenv/config"
 
 interface App_Interface {
     startServer():void;
@@ -26,7 +27,7 @@ class App implements App_Interface{
 
     public async connectDB():Promise<void>{
         try{
-            await mongoose.connect("mongodb+srv://subhadeepghorai23:Subha%40%282003%29@cluster0.q7s49m5.mongodb.net/SESD_DB?retryWrites=true&w=majority&appName=SESD")
+            await mongoose.connect(process.env.MONGO_URI as string)
             console.log("Database Connected!");
         }catch(err){
             console.log(err);

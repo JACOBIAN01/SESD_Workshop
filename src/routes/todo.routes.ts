@@ -1,15 +1,19 @@
 import { ToDoController } from "../controllers/todo.controller";
 import { Router } from "express";
 
-const router = Router()
-const todoController = new ToDoController()
+export class ToDoRouter {
+  private router = Router();
+  private todoController = new ToDoController();
 
-router.get("/",todoController.getAllTask)
+  constructor() {
+    this.router.get("/", this.todoController.getAllTask);
 
-router.post("/",todoController.createTaskRoute)
+    this.router.post("/", this.todoController.createTaskRoute);
 
-router.put("/:id",todoController.updateTask)
+    this.router.put("/:id", this.todoController.updateTask);
 
-router.delete("/:id",todoController.deleteTask)
+    this.router.delete("/:id", this.todoController.deleteTask);
+  }
+}
 
-export default router;
+
